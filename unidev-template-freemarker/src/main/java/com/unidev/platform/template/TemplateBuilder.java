@@ -10,9 +10,8 @@ import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -32,6 +31,9 @@ public class TemplateBuilder {
     @Builder.Default private TemplateBuilderMode mode = TemplateBuilderMode.STRING;
     private String template;
     private String templateLocation;
+
+    @Setter
+    @Getter
     private freemarker.template.TemplateExceptionHandler exceptionHandler;
 
     /**
