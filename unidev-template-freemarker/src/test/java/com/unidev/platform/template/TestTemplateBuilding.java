@@ -32,7 +32,7 @@ public class TestTemplateBuilding {
     @Test
     public void testTemplateBuildingWithVariables() {
         Template freeMarkerTemplate = TemplateBuilder
-                .newTemplate("template with ${variable} yoyo")
+                .newTemplate("template with ${variable} string")
                 .build().get();
 
         String template = TemplateBuilder.evaluate(freeMarkerTemplate, Map.of("variable", "key666")).get();
@@ -41,7 +41,7 @@ public class TestTemplateBuilding {
         assertThat(template, containsString("key666"));
 
         freeMarkerTemplate = TemplateBuilder
-                .newTemplate("template with ${variable!} yoyo").build().get();
+                .newTemplate("template with ${variable!} string").build().get();
 
         template = TemplateBuilder.evaluate(freeMarkerTemplate, Map.of()).get();
 
