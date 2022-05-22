@@ -2,7 +2,13 @@
 
 Interface to work with templates
 
+Supported templates:
+  * freemarker
 
+Local build:
+```
+./gradlew clean build  publishToMavenLocal
+```
 
 # License
 
