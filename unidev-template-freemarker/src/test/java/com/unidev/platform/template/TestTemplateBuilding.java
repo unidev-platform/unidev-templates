@@ -5,12 +5,14 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.not;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -72,8 +74,7 @@ public class TestTemplateBuilding {
     }
 
     @Test
-    public void testExceptionInTemplate() {
-
+    public void testExceptionIgnoreTemplate() {
         TemplateBuilder templateBuilder = TemplateBuilder
             .newTemplate("template with *** ${variable} *** template-variable");
         templateBuilder.setExceptionHandler(TemplateExceptionHandler.IGNORE_HANDLER);
@@ -85,6 +86,16 @@ public class TestTemplateBuilding {
         assertThat(template, not(isEmptyOrNullString()));
         assertThat(template.contains("error"), is(false));
         assertThat(template.contains("template-variable"), is(true));
+    }
+
+    @Test
+    public void testExceptionRethrowTemplate() {
+        TemplateBuilder templateBuilder = TemplateBuilder
+                .newTemplate("template with *** ${variable} *** template-variable");
+        templateBuilder.setExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+        Template freeMarkerTemplate = templateBuilder.build().get();
+        Optional<String> result = TemplateBuilder.evaluate(freeMarkerTemplate, Map.of());
+        assertTrue(result.isEmpty());
     }
 
 }
