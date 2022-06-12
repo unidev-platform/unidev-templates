@@ -140,10 +140,11 @@ public class TemplateBuilder {
         StringWriter stringWriter = new StringWriter();
         try {
             freemarkerTemplate.process(variables, stringWriter);
+            return Optional.of(stringWriter.toString());
         } catch (Exception e) {
             log.error("Failed to generate template", e);
+            return Optional.empty();
         }
-        return Optional.of(stringWriter.toString());
     }
 
 }
