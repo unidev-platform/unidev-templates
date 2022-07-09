@@ -13,7 +13,7 @@ repositories {
 }
 ...
 dependencies {
-    implementation('com.github.unidev-templates:unidev-template-freemarker:4.0.2')
+    implementation('com.github.unidev-platform:unidev-template-freemarker:4.0.2')
 }
 ```
 
