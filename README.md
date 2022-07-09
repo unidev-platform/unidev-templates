@@ -5,6 +5,18 @@ Interface to work with templates
 Supported templates:
   * freemarker
 
+# Usage
+```
+...
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+...
+dependencies {
+    implementation('com.github.unidev-templates:unidev-template-freemarker:4.0.2')
+}
+```
+
 Local build:
 ```
 ./gradlew clean build  publishToMavenLocal
