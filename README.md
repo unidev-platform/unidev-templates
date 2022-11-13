@@ -9,17 +9,17 @@ Supported templates:
 ```
 ...
 repositories {
-    maven { url 'https://jitpack.io' }
+    maven { url 'https://raw.githubusercontent.com/universal-development/java-artifacts/master/artifacts/' }
 }
 ...
 dependencies {
-    implementation('com.github.unidev-platform:unidev-template-freemarker:4.0.2')
+    implementation('com.unidev:unidev-template-freemarker:4.0.2')
 }
 ```
 
 Local build:
 ```
-./gradlew clean build  publishToMavenLocal
+./gradlew clean build
 ```
 
 # License
