@@ -136,13 +136,20 @@ public class TemplateBuilder {
         return Optional.empty();
     }
 
-    public static Optional<String> evaluate(Template freemarkerTemplate, Map<String, Object> variables) {
+    public static String evaluateE(Template freemarkerTemplate, Map<String, Object> variables) throws Exception {
         StringWriter stringWriter = new StringWriter();
         try {
             freemarkerTemplate.process(variables, stringWriter);
-            return Optional.of(stringWriter.toString());
+            return stringWriter.toString();
         } catch (Exception e) {
-            log.error("Failed to generate template", e);
+            e.printStackTrace();
+            throw e;
+        }
+    }
+    public static Optional<String> evaluate(Template freemarkerTemplate, Map<String, Object> variables) {
+        try {
+            return Optional.of(evaluateE(freemarkerTemplate, variables));
+        } catch (Exception e) {
             return Optional.empty();
         }
     }
